@@ -21,10 +21,75 @@ mutation addCustomer($name: String!) {
 `;
 
 export const EDIT_CUSTOMER = gql`
-mutation addCustomer($name: String!) {
-  addCustomer(name: $name) {
+mutation editCustomer($name: String!, $_id: ID!) {
+  editCustomer(name: $name, _id: $_id) {
     _id
     name
+  }
+}
+`;
+
+export const DELETE_CUSTOMER = gql`
+mutation deleteCustomer($_id: ID!) {
+  deleteCustomer(_id: $_id) {
+    _id
+    name
+  }
+}
+`;
+
+export const ADD_PROJECT = gql`
+mutation addProject($name: String!, customer: ID!) {
+  addProject(name: $name, customer: $customer) {
+    _id
+    name
+    customer
+  }
+}
+`;
+
+export const EDIT_PROJECT = gql`
+mutation editProject($name: String!, $_id: ID!) {
+  editProject(name: $name, _id: $_id) {
+    _id
+    name
+  }
+}
+`;
+
+export const DELETE_PROJECT = gql`
+mutation deleteProject($_id: ID!) {
+  deleteProject(_id: $_id) {
+    _id
+    name
+  }
+}
+`;
+
+export const ADD_TASK = gql`
+mutation addTask($description: String!, $project: ID!) {
+  addTask(description: $description) {
+    _id
+    description
+    project
+  }
+}
+`;
+
+export const EDIT_TASK = gql`
+mutation editTask($description: String!, $_id: ID!) {
+  editTask(description: $description, _id: $_id) {
+    _id
+    description
+  }
+}
+`;
+
+export const DELETE_TASK = gql`
+mutation deleteTask($_id: ID!) {
+  deleteTask(_id: $_id) {
+    _id
+    description
   }
 }
 `;
