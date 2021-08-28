@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -12,92 +12,101 @@ export const LOGIN = gql`
 `;
 
 export const ADD_CUSTOMER = gql`
-mutation addCustomer($name: String!) {
-  addCustomer(name: $name) {
-    _id
-    name
+  mutation addCustomer($name: String!) {
+    addCustomer(name: $name) {
+      _id
+      name
+    }
   }
-}
 `;
 
 export const EDIT_CUSTOMER = gql`
-mutation editCustomer($name: String!, $_id: ID!) {
-  editCustomer(name: $name, _id: $_id) {
-    _id
-    name
+  mutation editCustomer($name: String!, $_id: ID!) {
+    editCustomer(name: $name, _id: $_id) {
+      _id
+      name
+    }
   }
-}
 `;
 
 export const DELETE_CUSTOMER = gql`
-mutation deleteCustomer($_id: ID!) {
-  deleteCustomer(_id: $_id) {
-    _id
-    name
+  mutation deleteCustomer($_id: ID!) {
+    deleteCustomer(_id: $_id) {
+      _id
+      name
+    }
   }
-}
 `;
 
 export const ADD_PROJECT = gql`
-mutation addProject($name: String!, customer: ID!) {
-  addProject(name: $name, customer: $customer) {
-    _id
-    name
-    customer
+  mutation addProject($name: String!, $customer: ID!) {
+    addProject(name: $name, customer: $customer) {
+      _id
+      name
+      customer
+    }
   }
-}
 `;
 
 export const EDIT_PROJECT = gql`
-mutation editProject($name: String!, $_id: ID!) {
-  editProject(name: $name, _id: $_id) {
-    _id
-    name
+  mutation editProject($name: String!, $_id: ID!) {
+    editProject(name: $name, _id: $_id) {
+      _id
+      name
+    }
   }
-}
 `;
 
 export const DELETE_PROJECT = gql`
-mutation deleteProject($_id: ID!) {
-  deleteProject(_id: $_id) {
-    _id
-    name
+  mutation deleteProject($_id: ID!) {
+    deleteProject(_id: $_id) {
+      _id
+      name
+    }
   }
-}
 `;
 
 export const ADD_TASK = gql`
-mutation addTask($description: String!, $project: ID!) {
-  addTask(description: $description) {
-    _id
-    description
-    project
+  mutation addTask($description: String!, $project: ID!) {
+    addTask(description: $description) {
+      _id
+      description
+      project
+    }
   }
-}
 `;
 
 export const EDIT_TASK = gql`
-mutation editTask($description: String!, $_id: ID!) {
-  editTask(description: $description, _id: $_id) {
-    _id
-    description
+  mutation editTask($description: String!, $_id: ID!) {
+    editTask(description: $description, _id: $_id) {
+      _id
+      description
+    }
   }
-}
 `;
 
 export const DELETE_TASK = gql`
-mutation deleteTask($_id: ID!) {
-  deleteTask(_id: $_id) {
-    _id
-    description
+  mutation deleteTask($_id: ID!) {
+    deleteTask(_id: $_id) {
+      _id
+      description
+    }
   }
-}
 `;
 
-
 export const ADD_USER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+  mutation addUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
       token
       user {
         _id
