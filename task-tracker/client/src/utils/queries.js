@@ -20,6 +20,16 @@ export const QUERY_ALL = gql`
         _id
       }
     }
+    task_log {
+      _id
+      duration_minutes
+      task {
+        _id
+      }
+      user {
+        _id
+      }
+    }
   }
 `;
 
@@ -73,9 +83,11 @@ export const QUERY_TASK_LOG = gql`
       _id
       duration_minutes
       task {
+        _id
         description
       }
       user {
+        _id
         firstName
         lastName
       }

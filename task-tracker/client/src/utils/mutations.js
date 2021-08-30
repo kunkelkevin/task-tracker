@@ -94,6 +94,28 @@ export const DELETE_TASK = gql`
   }
 `;
 
+export const ADD_TASK_LOG = gql`
+  mutation addTaskLog($duration_minutes: Int!, $task: ID!, $user: ID!) {
+    addTaskLog(duration_minutes: $duration_minutes, task: $task, user: $user) {
+      _id
+      duration_minutes
+      task
+      user
+    }
+  }
+`;
+
+export const EDIT_TASK_LOG = gql`
+  mutation editTaskLog($duration_minutes: Int!, $_id: ID!) {
+    editTaskLog(duration_minutes: $duration_minutes, _id: $_id) {
+      _id
+      duration_minutes
+      task
+      user
+    }
+  }
+`;
+
 export const ADD_USER = gql`
   mutation addUser(
     $firstName: String!

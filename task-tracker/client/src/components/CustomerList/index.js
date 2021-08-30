@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import Customer from "../Customer";
 import { useStoreContext } from "../../utils/GlobalState";
-import { ADD_CUSTOMER, ADD_PROJECT, ADD_TASK } from "../../utils/actions";
+import {
+  ADD_CUSTOMER,
+  ADD_PROJECT,
+  ADD_TASK,
+  ADD_TASK_LOG,
+} from "../../utils/actions";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_ALL } from "../../utils/queries";
 import { idbPromise } from "../../utils/helpers";
@@ -26,6 +31,10 @@ function CustomerList() {
         type: ADD_TASK,
         task: data.task,
       });
+      dispatch({
+        type: ADD_TASK_LOG,
+        task: data.task_log,
+      });
       data.customer.forEach((customer) => {
         idbPromise("customer", "put", customer);
       });
@@ -34,6 +43,9 @@ function CustomerList() {
       });
       data.task.forEach((task) => {
         idbPromise("task", "put", task);
+      });
+      data.task_log.forEach((task_log) => {
+        idbPromise("task_log", "put", task_log);
       });
     } else if (!loading) {
       idbPromise("customer", "get").then((customer) => {
@@ -52,6 +64,12 @@ function CustomerList() {
         dispatch({
           type: ADD_TASK,
           task: task,
+        });
+      });
+      idbPromise("task_log", "get").then((task_log) => {
+        dispatch({
+          type: ADD_TASK_LOG,
+          task: task_log,
         });
       });
     }
