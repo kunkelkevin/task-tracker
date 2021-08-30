@@ -4,9 +4,9 @@ import { useStoreContext } from "../../utils/GlobalState";
 function Task_Log(item) {
   const [state] = useStoreContext();
 
-  const { description, _id } = item;
+  const { duration_minutes, _id } = item;
 
-  console.log(state);
+  console.log("logs", duration_minutes, state);
   //   const filteredTasks = () => {
   //     if (!_id) {
   //       return state.task;
@@ -18,14 +18,14 @@ function Task_Log(item) {
   //   console.log(filteredTasks());
 
   return (
-    <li>
-      {description}
-      {/* <ul>
-        {filteredTasks().map((task) => (
-          <task key={task._id} _id={task._id} name={task.name}></task>
-        ))}
-      </ul> */}
-    </li>
+    <>
+      <input
+        type="text"
+        name="duration"
+        defaultValue={duration_minutes}
+      ></input>
+      <button>{{ duration_minutes } ? "Enter" : "Update"}</button>
+    </>
   );
 }
 

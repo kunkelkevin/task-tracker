@@ -42,6 +42,16 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_ME = gql`
+  {
+    me {
+      _id
+      firstName
+      lastName
+    }
+  }
+`;
+
 export const QUERY_CUSTOMER = gql`
   query customer($_id: ID) {
     customer(_id: $_id) {

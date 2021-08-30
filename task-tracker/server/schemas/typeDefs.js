@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
@@ -38,7 +38,8 @@ const typeDefs = gql`
   }
 
   type Query {
-    user(_id: ID):[User]
+    me: User
+    user(_id: ID): [User]
     customer(_id: ID): [Customer]
     project(_id: ID): [Project]
     task(_id: ID): [Task]
@@ -46,19 +47,24 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): Auth
     login(email: String!, password: String!): Auth
     addCustomer(name: String!): Customer
     editCustomer(name: String!, _id: ID!): Customer
     deleteCustomer(_id: ID!): Customer
-    addProject(name: String!, customer: ID!):Project
-    editProject(name: String!, _id: ID!):Project
-    deleteProject(_id: ID!):Project
-    addTask(description: String!, project: ID!):Task
-    editTask(description: String!, _id: ID!):Task
-    deleteTask(_id: ID!):Task
-    addTaskLog(duration_minutes: Int!, task: ID!, user: ID!):TaskLog
-    editTaskLog(duration_minutes: Int!, _id: ID!):TaskLog
+    addProject(name: String!, customer: ID!): Project
+    editProject(name: String!, _id: ID!): Project
+    deleteProject(_id: ID!): Project
+    addTask(description: String!, project: ID!): Task
+    editTask(description: String!, _id: ID!): Task
+    deleteTask(_id: ID!): Task
+    addTaskLog(duration_minutes: Int!, task: ID!, user: ID!): TaskLog
+    editTaskLog(duration_minutes: Int!, _id: ID!): TaskLog
   }
 `;
 
