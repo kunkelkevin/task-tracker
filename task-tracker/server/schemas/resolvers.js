@@ -7,8 +7,7 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         console.log(context.user);
-        const userData = await user
-          .findOne({
+        const userData = await User.findOne({
             _id: context.user._id,
           })
           .select("-__v -password");
@@ -20,7 +19,7 @@ const resolvers = {
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id);
-
+        
         return user;
       }
 
@@ -129,6 +128,7 @@ const resolvers = {
       if (context.user) {
         params = { ...args };
         params.user = context.user._id;
+        
         return await TaskLog.create(params);
       }
 

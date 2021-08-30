@@ -63,7 +63,7 @@ const typeDefs = gql`
     addTask(description: String!, project: ID!): Task
     editTask(description: String!, _id: ID!): Task
     deleteTask(_id: ID!): Task
-    addTaskLog(duration_minutes: Int!, task: ID!, user: ID!): TaskLog
+    addTaskLog(duration_minutes: Int!, task: ID!): TaskLog
     editTaskLog(duration_minutes: Int!, _id: ID!): TaskLog
   }
 `;

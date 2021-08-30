@@ -12,3 +12,5 @@ export const DELETE_TASK = "DELETE_TASK";
 
 export const ADD_TASK_LOG = "ADD_TASK_LOG";
 export const EDIT_TASK_LOG = "EDIT_TASK_LOG";
+
+export const ADD_ME = "ADD_ME";

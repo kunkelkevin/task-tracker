@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const QUERY_ALL = gql`
-  query allData {
+  query {
     customer {
       _id
       name

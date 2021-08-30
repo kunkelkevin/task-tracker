@@ -14,7 +14,6 @@ function Customer(item) {
       return project.customer._id === _id;
     });
   };
-  console.log(filteredProjects());
 
   return (
     <li>

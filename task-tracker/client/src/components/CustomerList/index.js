@@ -15,7 +15,7 @@ import spinner from "../../assets/spinner.gif";
 function CustomerList() {
   const [state, dispatch] = useStoreContext();
 
-  const { loading, data } = useQuery(QUERY_ALL);
+  const { data, loading } = useQuery(QUERY_ALL);
 
   useEffect(() => {
     if (data) {
@@ -33,8 +33,9 @@ function CustomerList() {
       });
       dispatch({
         type: ADD_TASK_LOG,
-        task: data.task_log,
+        task_log: data.task_log,
       });
+      // idbPromise("me","put", data.me);
       data.customer.forEach((customer) => {
         idbPromise("customer", "put", customer);
       });

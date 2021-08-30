@@ -14,7 +14,6 @@ export const LOGIN = gql`
 export const ADD_CUSTOMER = gql`
   mutation addCustomer($name: String!) {
     addCustomer(name: $name) {
-      _id
       name
     }
   }
@@ -41,7 +40,6 @@ export const DELETE_CUSTOMER = gql`
 export const ADD_PROJECT = gql`
   mutation addProject($name: String!, $customer: ID!) {
     addProject(name: $name, customer: $customer) {
-      _id
       name
       customer
     }
@@ -69,7 +67,6 @@ export const DELETE_PROJECT = gql`
 export const ADD_TASK = gql`
   mutation addTask($description: String!, $project: ID!) {
     addTask(description: $description) {
-      _id
       description
       project
     }
@@ -95,12 +92,15 @@ export const DELETE_TASK = gql`
 `;
 
 export const ADD_TASK_LOG = gql`
-  mutation addTaskLog($duration_minutes: Int!, $task: ID!, $user: ID!) {
-    addTaskLog(duration_minutes: $duration_minutes, task: $task, user: $user) {
-      _id
+  mutation addTaskLog($duration_minutes: Int!, $task: ID!) {
+    addTaskLog(duration_minutes: $duration_minutes, task: $task) {
       duration_minutes
-      task
-      user
+      task {
+        _id
+      }
+      user {
+        _id
+      }
     }
   }
 `;
@@ -110,8 +110,12 @@ export const EDIT_TASK_LOG = gql`
     editTaskLog(duration_minutes: $duration_minutes, _id: $_id) {
       _id
       duration_minutes
-      task
-      user
+      task {
+        _id
+      }
+      user {
+        _id
+      }
     }
   }
 `;

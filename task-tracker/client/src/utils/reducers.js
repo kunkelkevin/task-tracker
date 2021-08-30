@@ -81,7 +81,7 @@ export const reducer = (state, action) => {
     case ADD_TASK_LOG:
       return {
         ...state,
-        task_log: [...state.task_log, action.task_log],
+        task_log: [...state.task_log, ...action.task_log],
       };
 
     case EDIT_TASK_LOG:

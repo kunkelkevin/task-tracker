@@ -15,6 +15,7 @@ export function idbPromise(storeName, method, object) {
       db.createObjectStore('project', { keyPath: '_id' });
       db.createObjectStore('task', { keyPath: '_id' });
       db.createObjectStore('task_log', { keyPath: '_id' });
+      db.createObjectStore('me', { keyPath: '_id' });
     };
 
     request.onerror = function(e) {
