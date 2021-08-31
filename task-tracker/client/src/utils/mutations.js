@@ -94,6 +94,7 @@ export const DELETE_TASK = gql`
 export const ADD_TASK_LOG = gql`
   mutation addTaskLog($duration_minutes: Int!, $task: ID!) {
     addTaskLog(duration_minutes: $duration_minutes, task: $task) {
+      _id
       duration_minutes
       task {
         _id

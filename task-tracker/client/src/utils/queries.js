@@ -95,6 +95,14 @@ export const QUERY_TASK_LOG = gql`
       task {
         _id
         description
+        project {
+          _id
+          name
+          customer {
+            _id
+            name
+          }
+        }
       }
       user {
         _id

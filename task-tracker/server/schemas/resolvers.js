@@ -8,9 +8,8 @@ const resolvers = {
       if (context.user) {
         console.log(context.user);
         const userData = await User.findOne({
-            _id: context.user._id,
-          })
-          .select("-__v -password");
+          _id: context.user._id,
+        }).select("-__v -password");
         return userData;
       }
       console.log("didn't make it");
@@ -19,7 +18,7 @@ const resolvers = {
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id);
-        
+
         return user;
       }
 
@@ -41,7 +40,7 @@ const resolvers = {
         params._id = _id;
       }
 
-      return await Project.find(params);
+      return await Project.find(params).populate("customer");
     },
     task: async (parent, { _id }) => {
       const params = {};
@@ -50,7 +49,9 @@ const resolvers = {
         params._id = _id;
       }
 
-      return await Task.find(params);
+      return await Task.find(params)
+        .populate("project")
+        .populate({ path: "project", populate: "customer" });
     },
     task_log: async (parent, { _id }) => {
       const params = {};
@@ -59,7 +60,14 @@ const resolvers = {
         params._id = _id;
       }
 
-      return await TaskLog.find(params);
+      return await TaskLog.find(params)
+        .populate("user")
+        .populate("task")
+        .populate({
+          path: "task",
+          populate: "project",
+          populate: { path: "project", populate: "customer" },
+        });
     },
   },
   Mutation: {
@@ -121,14 +129,14 @@ const resolvers = {
     },
 
     deleteTask: async (parent, { _id }) => {
-      return await Task.findByIdAndDelete(_id, args);
+      return await Task.findByIdAndDelete(_id);
     },
 
     addTaskLog: async (parent, args, context) => {
       if (context.user) {
         params = { ...args };
         params.user = context.user._id;
-        
+
         return await TaskLog.create(params);
       }
 
@@ -137,7 +145,8 @@ const resolvers = {
 
     editTaskLog: async (parent, args, context) => {
       if (context.user) {
-        return await TaskLog.findByIdAndUpdate(context.user._id, args, {
+        console.log(args);
+        return await TaskLog.findByIdAndUpdate(args._id, args, {
           new: true,
         });
       }

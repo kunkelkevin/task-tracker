@@ -18,7 +18,7 @@ export const reducer = (state, action) => {
     case ADD_CUSTOMER:
       return {
         ...state,
-        customer: [...state.customer, ...action.customer],
+        customer: [...action.customer],
       };
 
     case EDIT_CUSTOMER:
@@ -39,7 +39,7 @@ export const reducer = (state, action) => {
     case ADD_PROJECT:
       return {
         ...state,
-        project: [...state.project, ...action.project],
+        project: [...action.project],
       };
 
     case EDIT_PROJECT:
@@ -60,7 +60,7 @@ export const reducer = (state, action) => {
     case ADD_TASK:
       return {
         ...state,
-        task: [...state.task, ...action.task],
+        task: [...action.task],
       };
 
     case EDIT_TASK:
@@ -81,7 +81,7 @@ export const reducer = (state, action) => {
     case ADD_TASK_LOG:
       return {
         ...state,
-        task_log: [...state.task_log, ...action.task_log],
+        task_log: [...action.task_log],
       };
 
     case EDIT_TASK_LOG:
